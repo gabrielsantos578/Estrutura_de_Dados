@@ -1,11 +1,3 @@
-/******************************************************************************
-
-Welcome to GDB Online.
-  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
-  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
-  Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
 #include <stdio.h>
 #include <string.h>
 
@@ -136,7 +128,6 @@ int ordenar(agenda A[100], int *insercao) {
     printf("[1] Código\n");
     printf("[2] Nome\n");
     printf("[3] Telefone\n\n");
-    printf("[3] Telefone\n\n");
     printf("Digite o número da opção: ");
     scanf("%d", &op);
     printf("\n");
@@ -228,7 +219,7 @@ int consultar(agenda A[100], int *insercao) {
     char nome[100];
     
     printf("Informe o nome do contato: "); scanf(" %99[^\n]", nome); scanf("%*[^\n]"); scanf("%*c");
-    printf("\n\n");
+    printf("\n");
     
     int enc=0;
     
@@ -268,5 +259,3 @@ int sair() {
     return 0;
     
 };
-
-
