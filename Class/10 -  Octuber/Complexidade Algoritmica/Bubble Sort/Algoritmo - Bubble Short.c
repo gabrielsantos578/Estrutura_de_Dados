@@ -9,7 +9,7 @@ int main();
 int main()
 {
     int troca;
-    long long i, aux, N = 1000, vetor[N];
+    long long i, aux, N = 100000, vetor[N];
 
     setlocale(LC_ALL, "Portuguese");
     for (i = 0; i < N; i++)
@@ -20,7 +20,6 @@ int main()
     clock_t inicio = clock();
 
     troca = 1;
-    unsigned long long quantOperacao = 0;
     while (troca == 1)
     {
         troca = 0;
@@ -33,8 +32,6 @@ int main()
                 vetor[i] = vetor[i + 1];
                 vetor[i + 1] = aux;
             }
-
-            quantOperacao += 1;
         }
     }
 
@@ -45,7 +42,6 @@ int main()
     printf("\n\nClock inicial: %lu\n", inicio);
     printf("Clock final: %lu\n", fim);
     printf("Tempo decorrido: %.6f segundos\n", tempo_decorrido);
-    printf("Quantidade de operacoes: %lld\n\n", quantOperacao);
     printf("--------------------------------------------");
 
     return 0;
