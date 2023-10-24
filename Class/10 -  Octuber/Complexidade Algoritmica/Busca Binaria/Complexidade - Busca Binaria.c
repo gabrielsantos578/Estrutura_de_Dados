@@ -5,25 +5,47 @@
 #include <string.h>
 #include <time.h>
 
-#define TAM 100000 // Define o tamanho do vetor;
+#define TAM 100000
 
-long long fSelect_Sort(long long *pVetor); // Declara a função select sort;
+long long recursive_binary_search(long long vector[TAM], long long begin, long long end, long long item, long long quantOperacao)
+{
+    long long i = (begin + end) / 2;
+
+    if (begin > end)
+    {
+        return -1;
+    }
+
+    if (vector[i] == item)
+    {
+        return quantOperacao;
+    }
+
+    if (vector[i] < item)
+    {
+        return recursive_binary_search(vector, i + 1, end, item, quantOperacao + 1);
+    }
+    else
+    { // vector[i] > item
+        return recursive_binary_search(vector, begin, i - 1, item, quantOperacao + 1);
+    }
+}
 
 int main()
 {
-    long long vVetor[TAM]; // Declara o vetor
-    long long vAux;
-    long long quantOperacao;
+    long long vector[TAM];
+    long long i;
 
-    srand ( time(NULL) );
-    for (vAux=0; vAux < TAM; vAux++)
-    {
-        vVetor[vAux] = (long long) rand() % TAM; // Preenche o vetor aleatóriamente;
-    }
+    for (i = 0; i < TAM; i++)
+        vector[i] = i + 1;
+
+    srand((unsigned)time(NULL));
+    i = (int)0 + (rand() % (TAM - 1));
+    long long item = vector[i];
 
     clock_t inicio = clock();
 
-    quantOperacao = fSelect_Sort(vVetor); // Chama a função de Ordenação;
+    long long quantOperacao = recursive_binary_search(vector, 0, TAM - 1, item, 0);
 
     clock_t fim = clock();
 
@@ -37,36 +59,4 @@ int main()
     printf("--------------------------------------------");
 
     return 0;
-}
-
-long long fSelect_Sort(long long *pVetor)
-{
-    long long vMenor;
-    long long vAux;
-    long long vTemp;
-    long long vTroca;
-    long long quantOperacao = 0;
-
-    for(vAux=0; vAux < TAM-1; vAux++) // Percorre todo o vetor até TAM-1, pois a ultima posição não precisa testar pois ja estara ordenada;
-    {
-        vMenor = vAux; // Menor valor recebe a posição que está passando;
-
-        for (vTemp=vAux+1; vTemp < TAM; vTemp++) // Percorre o vetor da posição vAux+1 até o final;
-        {
-            if (pVetor[vTemp] < pVetor[vMenor]) // Testa se a posição que está passando é menor que o menor valor;
-            {
-                vMenor = vTemp; // vMenor recebe a posição do menor valor;
-            }
-            quantOperacao += 1;
-        }
-
-        if (vMenor != vAux) // Se a posição for diferente da que está passando, ocorre a troca;
-        {
-            vTroca         = pVetor[vAux];
-            pVetor[vAux]   = pVetor[vMenor];
-            pVetor[vMenor] = vTroca;
-        }
-    }
-
-    return quantOperacao;
 }

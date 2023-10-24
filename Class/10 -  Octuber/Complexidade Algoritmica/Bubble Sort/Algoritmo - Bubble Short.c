@@ -3,8 +3,6 @@
 #include <locale.h>
 #include <string.h>
 #include <time.h>
-//100000
-int main();
 
 int main()
 {
@@ -14,7 +12,7 @@ int main()
     setlocale(LC_ALL, "Portuguese");
     for (i = 0; i < N; i++)
     {
-        vetor[i] = (long long) rand() % N;
+        vetor[i] = (long long)rand() % N;
     }
 
     clock_t inicio = clock();
